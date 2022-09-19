@@ -1,4 +1,4 @@
-# Project-1
+#Stephanie Parker - Project-1
 
 BlackJack 
 
