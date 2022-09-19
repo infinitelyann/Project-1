@@ -1,43 +1,52 @@
-# BlackJack
+# BlackJack Overview
 
-# Game Overview
+Basic Game of 21
 
 # Technologies Used
 
 -HTML
+
 -CSS
+
 -Javascript
+
 -API
 
 # Player Stories
 
 -the player will have a starting amount of $$
 
--player will then place a bet with the click of a button, after choosing their bet amount with the click of buttons respective to their chips(four different chips with four different values)(this will basically be a start button)
+-player will then place a bet with the click of a button, after choosing their bet amount with the click of buttons respective to their chips(four different colored chips with four different values)(this will basically be a start button)
 
 -this will draw two random cards from a deck of cards array
--starts out as an empty array
--the array will be filled on a shuffle function,
--the deck of cards array will be associated with an API, therefore this will be an array of objects
 
--the ways this array will be manipulated:
-
-        -when the player starts the game, the two cards drawn from the array will be removed from the deck with the .pop() method
-        -the dealer will also automatically draw two cards, which will be removed from the deck with a similar function to player turn
-        -ALL cards that are drawn will be determined by Math.random(Math.floor) methods, and the index of each card pulled will be calculated, and removed from the deck with a for-loop(s)
-
--each card played will be a function containing a for-loop indicating a value of 'i' that will:
--reflect the number value of the card(that will be used to calculate the sum of the hand, including a conditional for ACE being 1 or 10)
--reflect which of the four suits the card belongs to
+-the dealer will then draw two cards
 
 -after the initial drawing of cards, the player will have the options to, when clicked:
 
-                1-"hit":draw a new card---that will automatically add that cards 'i' number value to the sum of the players hand, and display "bust" if sum                   is > 21, and will restart the game, giving dealer the players bet.
-                2- "stand": decide to let their current sum of hand compare to the dealers sum of hand (both of which will be empty arrays, filled with the                           .push() method upon draw. whoevers sum is <= 21 and > the others hand, will win the chips on the table.
+1-"hit":draw a new card---that will automatically add that cards 'i' number value to the sum of the players hand, and display "bust" if sum is > 21, and will restart the game, giving dealer the players bet.
+
+2- "stand": decide to let their current sum of hand compare to the dealers sum of hand (both of which will be empty arrays, filled with the .push() method upon draw. whoevers sum is <= 21 and > the others hand, will win the chips on the table.
 
 -upon player wins/losses, the value of the respective variable will be increased by 1.
 
 -when the player wins, the sum of the chips they win will be organized into their respective chip color, automatically upgrading chip color if it's value allows.
+
+# Deck
+
+-starting out as an empty array
+
+-the array will be filled on a shuffle function,
+
+-the deck of cards array will be associated with an API, therefore this will be an array of objects
+
+-when the player starts the game, the two cards drawn from the array will be removed from the deck with the .pop() method
+
+-the dealer will also automatically draw two cards, which will be removed from the deck with a similar function to player turn
+
+-ALL cards that are drawn will be determined by Math.random(Math.floor) methods, and the index of each card pulled will be calculated, and removed from the deck with a for-loop(s), that will indicate the "i" value of that card
+
+-this "i"(index) value will reflect the number value of the card(that will be used to calculate the sum of the hand, including a conditional for ACE being 1 or 10) and which of the four suits the card belongs to
 
 # WireFrame
 
