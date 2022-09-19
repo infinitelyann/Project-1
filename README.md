@@ -50,7 +50,10 @@ Basic Game of 21
 
 -the dealer will also automatically draw two cards, which will be removed from the deck with a similar function to player turn
 
-# WireFrame
+# WireFrames
+
+Welcome WireFrame
+<img >
 
 <img width="1015" alt="Screen Shot 2022-09-17 at 12 56 26 PM" src="https://user-images.githubusercontent.com/68655342/190944630-37c4b3a2-9681-4c1b-9bd9-5bdef16a5de3.png">
 
