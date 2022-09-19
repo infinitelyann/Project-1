@@ -40,4 +40,10 @@ Game Overview
  
   <img width="1046" alt="Screen Shot 2022-09-18 at 11 50 48 PM" src="https://user-images.githubusercontent.com/68655342/190947135-6ad810ec-66a8-497d-95d2-e50ee5d23a6a.png">
  
- my alternative idea is SNAKE lol 
+ my alternative idea is SNAKE 
+ 
+ 
+ The following is my plan of execution:
+ ![Screen Shot 2022-09-19 at 9 33 39 AM](https://user-images.githubusercontent.com/68655342/191029726-a6b97287-be61-429b-b718-3c21f4892150.png)
+
+ 
