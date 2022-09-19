@@ -10,7 +10,7 @@ Basic Game of 21
 
 -Javascript
 
--API
+<a href='https://deckofcardsapi.com/api/deck/<<deck_id>>/draw/?count=2'>-API</a>
 
 # Player Stories
 
@@ -28,25 +28,27 @@ Basic Game of 21
 
 2- "stand": decide to let their current sum of hand compare to the dealers sum of hand (both of which will be empty arrays, filled with the .push() method upon draw. whoevers sum is <= 21 and > the others hand, will win the chips on the table.
 
--upon player wins/losses, the value of the respective variable will be increased by 1.
+-upon player wins/losses, the value of the respective variable will be increased by 1, and the respective page will display with options to Quit, or Go again. Bust will be considered a loss
 
--when the player wins, the sum of the chips they win will be organized into their respective chip color, automatically upgrading chip color if it's value allows.
+-when the player wins, the sum of the chips they win will be organized into their respective chip color, automatically upgrading chip color if it's value allows
+
+-the game will continue in rounds until the player runs out of chips, or the deck is empty, whichever happens first
 
 # Deck
 
 -starting out as an empty array
 
--the array will be filled on a shuffle function,
+-the array will be filled on a shuffle function, containing Math.random(Math.floor) methods
+
+-ALL cards that are drawn will be passed into a for-loop, that will indicate the "i" value of that card
+
+-this "i"(index) value will reflect the number value of the card(that will be used to calculate the sum of the hand, including a conditional for ACE being 1 or 10) and which of the four suits the card belongs
 
 -the deck of cards array will be associated with an API, therefore this will be an array of objects
 
--when the player starts the game, the two cards drawn from the array will be removed from the deck with the .pop() method
+-when the player starts the game, the two cards drawn will also be determined with Math.random, and will be removed from the array will be removed from the deck with the .pop() method
 
 -the dealer will also automatically draw two cards, which will be removed from the deck with a similar function to player turn
-
--ALL cards that are drawn will be determined by Math.random(Math.floor) methods, and the index of each card pulled will be calculated, and removed from the deck with a for-loop(s), that will indicate the "i" value of that card
-
--this "i"(index) value will reflect the number value of the card(that will be used to calculate the sum of the hand, including a conditional for ACE being 1 or 10) and which of the four suits the card belongs to
 
 # WireFrame
 
