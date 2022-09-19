@@ -40,4 +40,4 @@ Game Overview
  
   <img width="1046" alt="Screen Shot 2022-09-18 at 11 50 48 PM" src="https://user-images.githubusercontent.com/68655342/190947135-6ad810ec-66a8-497d-95d2-e50ee5d23a6a.png">
  
- 
+ my alternative idea is SNAKE lol 
