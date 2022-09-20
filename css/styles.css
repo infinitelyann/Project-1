@@ -1,0 +1,9 @@
+h1 {
+    color:purple
+}
+#player, 
+#dealer {
+    width: 500;
+    height: 400px;
+    background-color: steelblue;
+}

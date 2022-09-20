@@ -10,7 +10,7 @@ Basic Game of 21
 
 -Javascript
 
-<a href='https://deckofcardsapi.com/api/deck/<<deck_id>>/draw/?count=2'>-API</a>
+<a href='https://deckofcardsapi.com/api/deck/new/'>-API</a>
 
 # Player Stories
 
