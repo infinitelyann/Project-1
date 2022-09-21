@@ -1,8 +1,8 @@
 h1 {
     color:purple
 }
-#player-board, 
-#dealer-board {
+#player, 
+#dealer {
     width: 500;
     height: 400px;
     background-color: steelblue;

@@ -2,15 +2,12 @@
 const deckUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
 let playerBet = document.getElementById('player-button')
 let hitButton = document.getElementById('hit-button')
-let playerTable = document.getElementById('player-board')
-const dealerTable = document.getElementById('dealer-board')
-let playerCard1 = document.getElementById("player-img1")
-let playerCard2 = document.getElementById("player-img2")
-let dealerCard1 = document.getElementById("dealer-img1")
-let dealerCard2 = document.getElementById("dealer-img2")
+let standbutton = document.getElementById('stand-button')
 let deck = []
 let player = []
 let dealer = []
+player.board = document.getElementById('player')
+dealer.board = document.getElementById('dealer')
 
 let cardImgUrls = []
 
@@ -35,29 +32,30 @@ async function main(){
 main()
 
  function dealingCards(user){ 
-
    user.push(deck.pop())
-   cardImgUrls.pop()
    user.push(deck.pop())
-   cardImgUrls.pop()
-   console.log(user)
-   
+   card = document.createElement('img')
+   card.src = user[user.length -2].image
+   card2 = document.createElement('img')
+   card2.src = user[user.length -1].image
+   user.board.appendChild(card)
+    user.board.appendChild(card2)
+   console.log(user) 
  }
 
     
     playerBet.addEventListener('click',() =>{
             dealingCards(player)
             dealingCards(dealer)
-            playerCard1.src = player[0].image
-            playerCard2.src = player[1].image
-            dealerCard1.src = dealer[0].image
-            dealerCard2.src = dealer[1].image
             playerBet.disabled = true
         
            })
 
     function hit(user){ 
        user.push(deck.pop())
+       card = document.createElement('img')
+       card.src = user[user.length -1].image
+       user.board.appendChild(card)
         console.log(user)
     }
 
@@ -65,9 +63,7 @@ main()
 
 hitButton.addEventListener('click', () =>{
     hit(player)
-    card = document.createElement('img')
-    card.src = player[player.length -1].image
-    document.getElementById('player-board').appendChild(card)
+
 })
 
 
