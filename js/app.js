@@ -1,7 +1,9 @@
 
 const deckUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
 let playerBet = document.getElementById('player-button')
-const dealerTable = document.getElementById('dealer')
+let hitButton = document.getElementById('hit-button')
+let playerTable = document.getElementById('player-board')
+const dealerTable = document.getElementById('dealer-board')
 let playerCard1 = document.getElementById("player-img1")
 let playerCard2 = document.getElementById("player-img2")
 let dealerCard1 = document.getElementById("dealer-img1")
@@ -54,14 +56,19 @@ main()
         
            })
 
- function gettingImages(user){
-            for(let i =0; i <=user.length; i++){
-
-              
-            }
-        }       
+    function hit(user){ 
+       user.push(deck.pop())
+        console.log(user)
+    }
 
 
+
+hitButton.addEventListener('click', () =>{
+    hit(player)
+    card = document.createElement('img')
+    card.src = player[player.length -1].image
+    document.getElementById('player-board').appendChild(card)
+})
 
 
 
