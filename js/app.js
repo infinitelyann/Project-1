@@ -50,14 +50,16 @@ main()
             playerCard2.src = player[1].image
             dealerCard1.src = dealer[0].image
             dealerCard2.src = dealer[1].image
+            playerBet.disabled = true
         
            })
 
-//  function gettingImages(user){
-//             for(let i =0; i <=user.length; i++){
+ function gettingImages(user){
+            for(let i =0; i <=user.length; i++){
+
               
-//             }
-//         }       
+            }
+        }       
 
 
 
