@@ -8,7 +8,7 @@ let player = []
 let dealer = []
 player.board = document.getElementById('player')
 dealer.board = document.getElementById('dealer')
-
+let userValue = 0
 let cardImgUrls = []
 
 
@@ -20,6 +20,7 @@ async function getJson(url) {
 
 async function main(){
     data = await getJson(deckUrl)
+    
      deck = data.cards
     cardImgUrls = deck.map(cards=>{
         return{
@@ -32,31 +33,33 @@ async function main(){
 main()
 
  function dealingCards(user){ 
-   user.push(deck.pop())
-   user.push(deck.pop())
-   card = document.createElement('img')
-   card.src = user[user.length -2].image
-   card2 = document.createElement('img')
-   card2.src = user[user.length -1].image
-   user.board.appendChild(card)
+    user.push(deck.pop())
+    user.push(deck.pop())
+    card = document.createElement('img')
+    card.src = user[user.length -2].image
+    card2 = document.createElement('img')
+    card2.src = user[user.length -1].image
+    user.board.appendChild(card)
     user.board.appendChild(card2)
-   console.log(user) 
+   
  }
 
     
-    playerBet.addEventListener('click',() =>{
+playerBet.addEventListener('click',() =>{
             dealingCards(player)
             dealingCards(dealer)
             playerBet.disabled = true
         
            })
 
-    function hit(user){ 
+function hit(user){ 
        user.push(deck.pop())
        card = document.createElement('img')
        card.src = user[user.length -1].image
+       userValue = user[user.length -1].value
        user.board.appendChild(card)
-        console.log(user)
+    
+
     }
 
 
@@ -66,8 +69,33 @@ hitButton.addEventListener('click', () =>{
 
 })
 
+// function sum(user){
+//     Array.from()
+// }
+let playerSum = ()=>{
+
+    for(let i = 0; i <= player.length; i++){
+        let values = player[i].value
+        console.log(values)
+    }
+}
+// function stand(user){
+//    {
+//     let values = user[i].values
+    
+//     }
+        
+// console.log(userValue)
+   
+//     userValue =   user[i].value 
+    
+//}
+
+  
 
 
-
-
+standbutton.addEventListener('click', () =>{
+   playerSum()
+  
+})
 
