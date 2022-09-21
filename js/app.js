@@ -8,10 +8,7 @@ let player = []
 let dealer = []
 player.board = document.getElementById('player')
 dealer.board = document.getElementById('dealer')
-let userValue = 0
 let cardImgUrls = []
-
-
 async function getJson(url) {
     let response = await fetch(url);
     let data = await response.json()
@@ -41,10 +38,8 @@ main()
     card2.src = user[user.length -1].image
     user.board.appendChild(card)
     user.board.appendChild(card2)
-   
- }
+   }
 
-    
 playerBet.addEventListener('click',() =>{
             dealingCards(player)
             dealingCards(dealer)
@@ -56,46 +51,25 @@ function hit(user){
        user.push(deck.pop())
        card = document.createElement('img')
        card.src = user[user.length -1].image
-       userValue = user[user.length -1].value
        user.board.appendChild(card)
-    
-
-    }
-
-
+     }
 
 hitButton.addEventListener('click', () =>{
     hit(player)
+    console.log(player)
 
 })
 
-// function sum(user){
-//     Array.from()
-// }
-let playerSum = ()=>{
-
-    for(let i = 0; i <= player.length; i++){
-        let values = player[i].value
-        console.log(values)
+function userValue(user){
+    for(let i = 0; i <= user.length - 1; i++){ 
+    if(user[i].value === "QUEEN" || user[i].value === "ACE" || user[i].value === "KING" || user[i].value === "JACK" ){
+        user[i].value = 10
     }
-}
-// function stand(user){
-//    {
-//     let values = user[i].values
-    
-//     }
-        
-// console.log(userValue)
-   
-//     userValue =   user[i].value 
-    
-//}
-
-  
-
+    console.log(user[i].value)
+    }}
 
 standbutton.addEventListener('click', () =>{
-   playerSum()
-  
+ userValue(player)
+    userValue(dealer)
 })
 
