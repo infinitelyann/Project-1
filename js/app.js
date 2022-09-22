@@ -10,6 +10,9 @@ let playerValues = []
 let dealerValues = []
 let playerSum = 0
 let dealerSum = 0
+let playerSumMsg = document.getElementById('player-count')
+let dealerSumMsg = document.getElementById('dealer-count')
+
 let deck = []
 let player = []
 let dealer = []
@@ -27,8 +30,6 @@ let betAmount = document.getElementById('bet-amount')
 let betTotal = 0
 betAmount.innerText = ''
 let bet = []
-
-
 
 async function getJson(url) {
     let response = await fetch(url);
@@ -72,42 +73,45 @@ document.getElementById('place-bet').addEventListener('click', ()=>{
     playerBet.disabled = false
     document.getElementById('place-bet').disabled = true    
 })
-
-
- function dealingCards(user){ 
-    user.push(deck.pop())
+function hit(user){ 
     user.push(deck.pop())
     card = document.createElement('img')
-    card.src = user[user.length -2].image
-    card2 = document.createElement('img')
-    card2.src = user[user.length -1].image
-    user.board.appendChild(card)
-    user.board.appendChild(card2)
+    card.src = user[user.length -1].image
+    user.board.appendChild(card) 
    
+  }
+function clear(){
+    dealerValues = []
+    dealerSum = 0
+    playerValues = []
+    playerSum = 0
+    userValue(player)
+    dealerValue(dealer) 
+    playerSumMsg.innerText = playerSum
+    dealerSumMsg.innerText = dealerSum
+}
+
+ function firstDeal(user){ 
+    hit(user)
+    hit(user)
+ 
    }
 
 playerBet.addEventListener('click',() =>{
-            dealingCards(player)
-            dealingCards(dealer)
+            firstDeal(player)
+            firstDeal(dealer)
             playerBet.disabled = true
             hitButton.disabled = false
             standbutton.disabled = false
-          
+            clear()
+       
            })
-
-function hit(user){ 
-       user.push(deck.pop())
-       card = document.createElement('img')
-       card.src = user[user.length -1].image
-       user.board.appendChild(card)
-     }
-
 hitButton.addEventListener('click', () =>{
-    hit(player)
-    console.log(player)
-    
-
-})
+            hit(player)
+            console.log(player)
+            clear()
+           })
+           
 
 
 
@@ -144,13 +148,7 @@ hitButton.addEventListener('click', () =>{
             }
    
             
-     function runningCount(){
-                if(gamePlay = true){
-                    
-                }
-            }
-            
-          
+    
 
 standbutton.addEventListener('click', () =>{
     userValue(player)
