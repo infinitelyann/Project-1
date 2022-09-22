@@ -30,6 +30,11 @@ body{
     float: left;
     margin-top: 40px;
 }
+#score{
+    float:right;
+    padding-right: 150px;
+    font-size: larger;
+}
 /* .chips{
    
    

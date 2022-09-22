@@ -10,16 +10,19 @@ let playerValues = []
 let dealerValues = []
 let playerSum = 0
 let dealerSum = 0
+let gameRound = []
 let playerSumMsg = document.getElementById('player-count')
 let dealerSumMsg = document.getElementById('dealer-count')
-
+let wins =document.getElementById('wins#').innerText = 0
+let losses =document.getElementById('losses#').innerText = 0 
+let blackJacks =document.getElementById('21#').innerText = 0
+let rounds =document.getElementById('round#').innerText = gameRound
 let deck = []
 let player = []
 let dealer = []
 player.board = document.getElementById('player')
 dealer.board = document.getElementById('dealer')
 let gamePlay = true
-let gameRound = 0 
 let greenChip = document.getElementById('green') 
 let blueChip = document.getElementById('blue') 
 let redChip = document.getElementById('red') 
@@ -92,14 +95,22 @@ function clear(){
     playerSumMsg.innerText = playerSum
     dealerSumMsg.innerText = dealerSum
     playingConditions(playerSum)
-    winOrLose()
    
 
+}
+
+function dealerDraws(){
+  if(dealerSum < 17){
+    hit(dealer)
+  }       
+    
 }
 
  function firstDeal(user){ 
     hit(user)
     hit(user)
+    
+    
  
    }
 
@@ -110,14 +121,21 @@ playerBet.addEventListener('click',() =>{
             hitButton.disabled = false
             standbutton.disabled = false
             clear()
-            dealerDraws()
+            
            })
 hitButton.addEventListener('click', () =>{
             hit(player)
             console.log(player)
             clear()
+            dealerDraws()
            })
-           
+standbutton.addEventListener('click', () =>{
+            clear()
+            winOrLose()
+            standbutton.disabled = true
+            hitButton.disabled = true
+            
+        })
 
 
 
@@ -160,26 +178,26 @@ function playingConditions(sum){
             }else{
                 let message = document.getElementById('msg') 
                 message.innerText = "BUST! Dealer Win"
-                game()
+            
+                uponWinOrLoss(losses)
             }
           }  
   function winOrLose(){
     if(dealerSum > playerSum && dealerSum <= 21){
         let message = document.getElementById('msg') 
                 message.innerText = "Dealer Win!"
+                
+                uponWinOrLoss(losses)
     }else if(playerSum > dealerSum && playerSum <= 21){
         let message = document.getElementById('msg') 
         message.innerText = "Player Win!"
+       
+        uponWinOrLoss(wins)
     }
   }  
-  function dealerDraws(){
-    do {
-        hit(dealer)
-    }
-    while(dealerSum > 16 && dealerSum < 21)
-  }
- 
-function game(){
+   
+
+function uponWinOrLoss(msg){
     greenChip.disabled =true
     blueChip.disabled = true
     redChip.disabled = true
@@ -187,27 +205,31 @@ function game(){
     playerBet.disabled = true
     standbutton.disabled = true
     hitButton.disabled = true
+    msg.innerText = 1
+    gameRound.push(1)
+    
+}
+ 
+function game(){
     playerSum = 0
     dealerSum = 0
     player = []
     dealer = []
     bet = []
     betTotal = 0
+    rounds = 1
+    player.board.card.src = ''
+    dealer.board.card.src = ''
+    console.log(deck)
+    console.log(player)
+    console.log(dealer)
 }
-           
+       
             
-//  document.getElementById('new-game').addEventListener('click', ()=>{
-//     game()
-//  }
- 
-//  )   
+ document.getElementById('new-game').addEventListener('click', ()=>{
+    game()
+ }
+ )   
 
-standbutton.addEventListener('click', () =>{
-    userValue(player)
-    dealerValue(dealer)
-   
-    standbutton.disabled = true
-    hitButton.disabled = true
-    
-})
+
 
