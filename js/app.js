@@ -77,7 +77,9 @@ function hit(user){
     user.push(deck.pop())
     card = document.createElement('img')
     card.src = user[user.length -1].image
-    user.board.appendChild(card) 
+    user.board.appendChild(card)
+    
+   
    
   }
 function clear(){
@@ -89,6 +91,10 @@ function clear(){
     dealerValue(dealer) 
     playerSumMsg.innerText = playerSum
     dealerSumMsg.innerText = dealerSum
+    playingConditions(playerSum)
+    winOrLose()
+   
+
 }
 
  function firstDeal(user){ 
@@ -104,7 +110,7 @@ playerBet.addEventListener('click',() =>{
             hitButton.disabled = false
             standbutton.disabled = false
             clear()
-       
+            dealerDraws()
            })
 hitButton.addEventListener('click', () =>{
             hit(player)
@@ -146,14 +152,60 @@ hitButton.addEventListener('click', () =>{
             console.log(dealerSum)
             console.log(dealerValues)
             }
-   
+function playingConditions(sum){
+                if( sum < 21){
+                    let message = document.getElementById('msg') 
+                    message.innerText = "Hit Or Stand?"
+                    
+            }else{
+                let message = document.getElementById('msg') 
+                message.innerText = "BUST! Dealer Win"
+                game()
+            }
+          }  
+  function winOrLose(){
+    if(dealerSum > playerSum && dealerSum <= 21){
+        let message = document.getElementById('msg') 
+                message.innerText = "Dealer Win!"
+    }else if(playerSum > dealerSum && playerSum <= 21){
+        let message = document.getElementById('msg') 
+        message.innerText = "Player Win!"
+    }
+  }  
+  function dealerDraws(){
+    do {
+        hit(dealer)
+    }
+    while(dealerSum > 16 && dealerSum < 21)
+  }
+ 
+function game(){
+    greenChip.disabled =true
+    blueChip.disabled = true
+    redChip.disabled = true
+    gamePlay = false
+    playerBet.disabled = true
+    standbutton.disabled = true
+    hitButton.disabled = true
+    playerSum = 0
+    dealerSum = 0
+    player = []
+    dealer = []
+    bet = []
+    betTotal = 0
+}
+           
             
-    
+//  document.getElementById('new-game').addEventListener('click', ()=>{
+//     game()
+//  }
+ 
+//  )   
 
 standbutton.addEventListener('click', () =>{
     userValue(player)
     dealerValue(dealer)
-    // playerVsDealer()
+   
     standbutton.disabled = true
     hitButton.disabled = true
     
