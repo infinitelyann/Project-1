@@ -3,6 +3,9 @@ const deckUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
 let playerBet = document.getElementById('player-button')
 let hitButton = document.getElementById('hit-button')
 let standbutton = document.getElementById('stand-button')
+playerBet.disabled = true
+standbutton.disabled = true
+hitButton.disabled = true
 let playerValues = []
 let dealerValues = []
 let playerSum = 0
@@ -12,7 +15,18 @@ let player = []
 let dealer = []
 player.board = document.getElementById('player')
 dealer.board = document.getElementById('dealer')
-let cardImgUrls = []
+let gamePlay = true
+let gameRound = 0 
+let greenChip = document.getElementById('green') 
+let blueChip = document.getElementById('blue') 
+let redChip = document.getElementById('red') 
+let betAmount = document.getElementById('bet-amount')
+let betTotal = 0
+betAmount.innerText = ''
+let bet = []
+
+
+
 async function getJson(url) {
     let response = await fetch(url);
     let data = await response.json()
@@ -20,18 +34,41 @@ async function getJson(url) {
 }
 
 async function main(){
-    data = await getJson(deckUrl)
-    
-     deck = data.cards
-    cardImgUrls = deck.map(cards=>{
-        return{
-            image:cards.image
-        }
-    })
-   
+    data = await getJson(deckUrl) 
+     deck = data.cards  
 }
-
 main()
+
+
+greenChip.addEventListener('click', ()=>{
+    greenChip = 5
+    bet.push(greenChip)
+    betSum()
+})
+blueChip.addEventListener('click', ()=>{
+    blueChip = 10
+    bet.push(blueChip)
+    betSum()
+})
+redChip.addEventListener('click', ()=>{
+    redChip = 20
+    bet.push(redChip)
+  betSum()
+})
+function betSum(){
+
+    for(let i = 0; i < bet.length; i++){
+        betTotal +=bet[i]
+        
+    }
+   betAmount.innerText = betTotal
+
+    console.log(betTotal)
+}
+ 
+betSum()
+
+
 
  function dealingCards(user){ 
     user.push(deck.pop())
@@ -65,28 +102,25 @@ hitButton.addEventListener('click', () =>{
 })
 
 
+
  function userValue(user){
    
-    for(let i = 0; i < user.length; i++){ 
-       
+    for(let i = 0; i < user.length; i++){     
     if(user[i].value === "QUEEN" || user[i].value === "ACE" || user[i].value === "KING" || user[i].value === "JACK"){
         playerValues.push(10)   
     }else{
         playerValues.push(Number(user[i].value))
-    }
-        
-}
-for(let i = 0; i < playerValues.length; i++){
- playerSum +=playerValues[i]
- 
-}
-console.log(playerSum)
-console.log(playerValues)
-}
+    }   
+        }
+        for(let i = 0; i < playerValues.length; i++){
+        playerSum +=playerValues[i]
+        }
+        console.log(playerSum)
+        console.log(playerValues)
+        }
  function dealerValue(user){
-
             for(let i = 0; i < user.length; i++){ 
-            
+
             if(user[i].value === "QUEEN" || user[i].value === "ACE" || user[i].value === "KING" || user[i].value === "JACK"){
                 dealerValues.push(10)   
             }else{
@@ -100,11 +134,20 @@ console.log(playerValues)
             console.log(dealerSum)
             console.log(dealerValues)
             }
-
+   
+            
+     function runningCount(){
+                if(gamePlay = true){
+                    
+                }
+            }
+            
+          
 
 standbutton.addEventListener('click', () =>{
     userValue(player)
     dealerValue(dealer)
+    playerVsDealer()
     standbutton.disabled = true
     hitButton.disabled = true
     
