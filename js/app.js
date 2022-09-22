@@ -3,6 +3,10 @@ const deckUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
 let playerBet = document.getElementById('player-button')
 let hitButton = document.getElementById('hit-button')
 let standbutton = document.getElementById('stand-button')
+let playerValues = []
+let dealerValues = []
+let playerSum = 0
+let dealerSum = 0
 let deck = []
 let player = []
 let dealer = []
@@ -60,16 +64,49 @@ hitButton.addEventListener('click', () =>{
 
 })
 
-function userValue(user){
-    for(let i = 0; i <= user.length - 1; i++){ 
-    if(user[i].value === "QUEEN" || user[i].value === "ACE" || user[i].value === "KING" || user[i].value === "JACK" ){
-        user[i].value = 10
+
+ function userValue(user){
+   
+    for(let i = 0; i < user.length; i++){ 
+       
+    if(user[i].value === "QUEEN" || user[i].value === "ACE" || user[i].value === "KING" || user[i].value === "JACK"){
+        playerValues.push(10)   
+    }else{
+        playerValues.push(Number(user[i].value))
     }
-    console.log(user[i].value)
-    }}
+        
+}
+for(let i = 0; i < playerValues.length; i++){
+ playerSum +=playerValues[i]
+ 
+}
+console.log(playerSum)
+console.log(playerValues)
+}
+ function dealerValue(user){
+
+            for(let i = 0; i < user.length; i++){ 
+            
+            if(user[i].value === "QUEEN" || user[i].value === "ACE" || user[i].value === "KING" || user[i].value === "JACK"){
+                dealerValues.push(10)   
+            }else{
+                dealerValues.push(Number(user[i].value))
+            }
+            }
+            for(let i = 0; i < dealerValues.length; i++){
+            dealerSum +=dealerValues[i]
+            } 
+         
+            console.log(dealerSum)
+            console.log(dealerValues)
+            }
+
 
 standbutton.addEventListener('click', () =>{
- userValue(player)
-    userValue(dealer)
+    userValue(player)
+    dealerValue(dealer)
+    standbutton.disabled = true
+    hitButton.disabled = true
+    
 })
 
