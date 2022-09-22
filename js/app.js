@@ -20,6 +20,9 @@ let gameRound = 0
 let greenChip = document.getElementById('green') 
 let blueChip = document.getElementById('blue') 
 let redChip = document.getElementById('red') 
+greenChip.disabled = false
+blueChip.disabled = false
+redChip.disabled = false
 let betAmount = document.getElementById('bet-amount')
 let betTotal = 0
 betAmount.innerText = ''
@@ -41,33 +44,34 @@ main()
 
 
 greenChip.addEventListener('click', ()=>{
-    greenChip = 5
-    bet.push(greenChip)
-    betSum()
+    betSum(5)
 })
 blueChip.addEventListener('click', ()=>{
-    blueChip = 10
-    bet.push(blueChip)
-    betSum()
+    betSum(10)
 })
 redChip.addEventListener('click', ()=>{
-    redChip = 20
-    bet.push(redChip)
-  betSum()
+  betSum(20)
 })
-function betSum(){
 
+function betSum(num){
+    bet.push(num)
     for(let i = 0; i < bet.length; i++){
+       
         betTotal +=bet[i]
         
     }
    betAmount.innerText = betTotal
-
     console.log(betTotal)
 }
- 
-betSum()
 
+document.getElementById('place-bet').addEventListener('click', ()=>{
+    
+    greenChip.disabled = true
+    blueChip.disabled = true
+    redChip.disabled = true
+    playerBet.disabled = false
+    document.getElementById('place-bet').disabled = true    
+})
 
 
  function dealingCards(user){ 
@@ -79,13 +83,16 @@ betSum()
     card2.src = user[user.length -1].image
     user.board.appendChild(card)
     user.board.appendChild(card2)
+   
    }
 
 playerBet.addEventListener('click',() =>{
             dealingCards(player)
             dealingCards(dealer)
             playerBet.disabled = true
-        
+            hitButton.disabled = false
+            standbutton.disabled = false
+          
            })
 
 function hit(user){ 
@@ -98,6 +105,7 @@ function hit(user){
 hitButton.addEventListener('click', () =>{
     hit(player)
     console.log(player)
+    
 
 })
 
@@ -147,7 +155,7 @@ hitButton.addEventListener('click', () =>{
 standbutton.addEventListener('click', () =>{
     userValue(player)
     dealerValue(dealer)
-    playerVsDealer()
+    // playerVsDealer()
     standbutton.disabled = true
     hitButton.disabled = true
     
