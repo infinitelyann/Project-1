@@ -14,20 +14,23 @@ let gameRound = []
 let message = document.getElementById('msg') 
 let playerSumMsg = document.getElementById('player-count')
 let dealerSumMsg = document.getElementById('dealer-count')
-let wins =document.getElementById('wins#')
-let losses =document.getElementById('losses#') 
-let blackJacks =document.getElementById('21#')
-let rounds =document.getElementById('round#')
+let wins = []
+let losses  = []
+let blackJacks = []
+rounds = []
 let deck = []
 let player = []
 let dealer = []
 playerImgs = document.getElementById('player-imgs')
 dealerImgs = document.getElementById('dealer-imgs')
 let betButton = document.getElementById('place-bet')
-let gamePlay = true
+let gamePlay = false
 let greenChip = document.getElementById('green') 
 let blueChip = document.getElementById('blue') 
 let redChip = document.getElementById('red') 
+let greenQty = document.getElementById('g-qty').innerText = 8
+let blueQty = document.getElementById('b-qty').innerText = 5
+let redQty = document.getElementById('r-qty').innerText = 3
 greenChip.disabled = false
 blueChip.disabled = false
 redChip.disabled = false
@@ -51,14 +54,22 @@ main()
 
 greenChip.addEventListener('click', ()=>{
     betSum(5)
+    let qty = (Number(greenQty.innerText) -1)
+     greenQty.innerText = qty
+    
+   
 })
 blueChip.addEventListener('click', ()=>{
     betSum(10)
+    
 })
 redChip.addEventListener('click', ()=>{
   betSum(20)
+  
 })
-
+// function chips(chips){
+// for(let i = 0; i < chips)
+// }
 function betSum(num){
     bet.push(num)
     for(let i = 0; i < bet.length; i++){
@@ -71,7 +82,7 @@ function betSum(num){
 }
 
 betButton.addEventListener('click', ()=>{
-    
+    gamePlay = true
     greenChip.disabled = true
     blueChip.disabled = true
     redChip.disabled = true
@@ -98,15 +109,12 @@ function clear(){
     playerSumMsg.innerText = playerSum
     dealerSumMsg.innerText = dealerSum
     playingConditions(playerSum)
-   
-
 }
 
 function dealerDraws(){
   if(dealerSum < 17){
     hit(dealer, dealerImgs)
-  }       
-    
+  }         
 }
 
  function firstDeal(){ 
@@ -114,9 +122,6 @@ function dealerDraws(){
     hit(player, playerImgs)
     hit(dealer, dealerImgs)
     hit(dealer, dealerImgs)
-    
-    
- 
    }
 
 playerBet.addEventListener('click',() =>{
@@ -125,20 +130,20 @@ playerBet.addEventListener('click',() =>{
             hitButton.disabled = false
             standbutton.disabled = false
             clear()
-            
            })
+
 hitButton.addEventListener('click', () =>{
             hit(player, playerImgs)
             console.log(player)
             clear()
             dealerDraws()
            })
+
 standbutton.addEventListener('click', () =>{
             clear()
             winOrLose()
             standbutton.disabled = true
             hitButton.disabled = true
-            
         })
 
 
@@ -165,12 +170,14 @@ standbutton.addEventListener('click', () =>{
                 dealerValues.push(10)   
             }else{
                 dealerValues.push(Number(user[i].value))
+                
             }
             }
             for(let i = 0; i < dealerValues.length; i++){
-            dealerSum +=dealerValues[i]
+                    
+                dealerSum +=dealerValues[i]
             } 
-         
+        
             console.log(dealerSum)
             console.log(dealerValues)
             }
@@ -182,83 +189,78 @@ function playingConditions(sum){
                 message.innerText = "Hit Or Stand?"
                 // uponWinOrLoss()
             }else if(sum === 21){
-               blackJacks = true
-                counter(blackJacks)
+               blackJacks.push(1)
                 message.innerText = "winner!"
+                uponWinOrLoss()
             }else if(dealerSum > 21 && playerSum < 21){
-               wins = true
-               counter(wins)
+                wins.push(1)
                 message.innerText= "Dealer Bust! Player win!"
-                // uponWinOrLoss()
+                uponWinOrLoss()
           }else{
-                losses = true
+                losses.push(1)
                 message.innerText = "BUST! Dealer Win" 
-                // uponWinOrLoss()
-                counter(losses)
+                uponWinOrLoss()
           }  }
 
 
 
   function winOrLose(){
  if(dealerSum > playerSum && dealerSum <= 21){
-       losses = true
                 message.innerText = "Dealer Win!"
-               
-                counter(losses)
-                // uponWinOrLoss()
+               losses.push(1)
+                uponWinOrLoss()
     }else if(playerSum > dealerSum && playerSum <= 21){
-        wins = true
         message.innerText = "Player Win!"
-        counter(wins)
-        // uponWinOrLoss()
+        wins.push(1)
+        uponWinOrLoss()
     }
   }  
 
 
-function counter(message){
-    for(let i = 0; i < message.length; i++){
-            if(message == true){
-                message.innertext += message++
-            }
-    }
-}
 
-
-counter(blackJacks)
 
 function uponWinOrLoss(){
-    greenChip.disabled =true
-    blueChip.disabled = true
-    redChip.disabled = true
-    gamePlay = false
     playerBet.disabled = true
     standbutton.disabled = true
     hitButton.disabled = true
-
-    
-    
+    betButton.diabled = true
+    document.getElementById('new-game').disabled = false
+    document.getElementById('stand-button').disabled = true
+    message.innerText = "Wanna go again? Click Next Round!"
+  
 }
  
-// function game(){
-//     betButton.disabled = false
-//     playerSum = 0
-//     dealerSum = 0
-//     player = []
-//     dealer = []
-//     bet = []
-//     betTotal = 0
-//     rounds = 1
-//     console.log(deck)
-//     console.log(player)
-//     console.log(dealer)
-// }
+document.getElementById('stand-button').addEventListener('click', ()=>{
+    hitButton.disabled = true 
+    if(dealerSum < 21 &&  dealerSum >playerSum){
+        message.innerText = "Dealer Won"
+        losses.push(1)
+    }else if(playerSum > dealerSum ){
+        message.innerText = "Player Won"
+        wins.push(1)
+    }
+    
+})
        
             
  document.getElementById('new-game').addEventListener('click', ()=>{
     playerImgs.innerHTML = ''
-    dealerImgs.innerHTML = ''
- }
- )   
+    dealerImgs.innerHTML =''
+    player = []
+    dealer = []
+    betButton.disabled = false
+    playerSumMsg.innerText = 0
+    dealerSumMsg.innerText= 0
+    gamePlay = true
+    rounds.push(1)
+    document.getElementById('round#').innerText = rounds.length
+    document.getElementById('wins#').innerText = wins.length
+    document.getElementById('losses#').innerText = losses.length
+    document.getElementById('21#').innerText = blackJacks.length
+    document.getElementById('new-game').disabled = true
+    
+ })
+ clear()
 
 
 
