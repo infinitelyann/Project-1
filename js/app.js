@@ -114,7 +114,7 @@ function clear(){
 function dealerDraws(){
   if(dealerSum < 17){
     hit(dealer, dealerImgs)
-  }         
+  }  
 }
 
  function firstDeal(){ 
@@ -133,18 +133,18 @@ playerBet.addEventListener('click',() =>{
            })
 
 hitButton.addEventListener('click', () =>{
+    dealerDraws()
             hit(player, playerImgs)
             console.log(player)
             clear()
-            dealerDraws()
            })
 
-standbutton.addEventListener('click', () =>{
-            clear()
-            winOrLose()
-            standbutton.disabled = true
-            hitButton.disabled = true
-        })
+// standbutton.addEventListener('click', () =>{
+//             clear()
+//             winOrLose()
+//             standbutton.disabled = true
+//             hitButton.disabled = true
+//         })
 
 
 
@@ -183,41 +183,36 @@ standbutton.addEventListener('click', () =>{
             }
 
 
-function playingConditions(sum){
-            if(sum < 21){
-              
+function playingConditions(){
+   if(dealerSum > 21 && playerSum < 21){
+        wins.push(1)
+        message.innerText= "Dealer Bust! Player win!"
+        uponWinOrLoss()
+  }else if(playerSum > 21 && dealerSum > 21){
+        message.innerText ="tie!"
+        uponWinOrLoss()
+  }
+  else if(playerSum < 21){
                 message.innerText = "Hit Or Stand?"
-                // uponWinOrLoss()
-            }else if(sum === 21){
+               
+            }else if(playerSum === 21){
                blackJacks.push(1)
                 message.innerText = "winner!"
                 uponWinOrLoss()
-            }else if(dealerSum > 21 && playerSum < 21){
-                wins.push(1)
-                message.innerText= "Dealer Bust! Player win!"
+            }else if(dealerSum === 21){
+                losses.push(1)
+                message.innerText = "Dealer Blackjack"
                 uponWinOrLoss()
-          }else{
+            }else if(playerSum > 21){
                 losses.push(1)
                 message.innerText = "BUST! Dealer Win" 
                 uponWinOrLoss()
-          }  }
+            }
+          }  
 
 
 
-  function winOrLose(){
- if(dealerSum > playerSum && dealerSum <= 21){
-                message.innerText = "Dealer Win!"
-               losses.push(1)
-                uponWinOrLoss()
-    }else if(playerSum > dealerSum && playerSum <= 21){
-        message.innerText = "Player Win!"
-        wins.push(1)
-        uponWinOrLoss()
-    }
-  }  
-
-
-
+        
 
 function uponWinOrLoss(){
     playerBet.disabled = true
@@ -226,7 +221,9 @@ function uponWinOrLoss(){
     betButton.diabled = true
     document.getElementById('new-game').disabled = false
     document.getElementById('stand-button').disabled = true
-    message.innerText = "Wanna go again? Click Next Round!"
+    setTimeout(() =>{
+        message.innerText = "Wanna go again? Click Next Round!"}, 1500)
+    
   
 }
  
@@ -239,6 +236,7 @@ document.getElementById('stand-button').addEventListener('click', ()=>{
         message.innerText = "Player Won"
         wins.push(1)
     }
+    uponWinOrLoss()
     
 })
        
@@ -253,6 +251,8 @@ document.getElementById('stand-button').addEventListener('click', ()=>{
     dealerSumMsg.innerText= 0
     gamePlay = true
     rounds.push(1)
+  
+        message.innerText = "Place Bet!"
     document.getElementById('round#').innerText = rounds.length
     document.getElementById('wins#').innerText = wins.length
     document.getElementById('losses#').innerText = losses.length
