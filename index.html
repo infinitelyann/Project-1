@@ -1,76 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="/css/styles.css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+   
+    <link rel="stylesheet" href="/css/styles.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stephanie's Casino</title>
-</head>
-<!-- MODAL WINDOWS -->
-<body>
-    <main> <div id="win-msg">
-        <h1 id="msg"></h1>
-                </div>
-      
-            <div id="player">
-                <h5>player</h5>
-                <h3 id="player-count"></h3>
-                <p id="player-imgs"></p>
-                <div> 
-                    <button id="player-button">deal</button> 
-                    <button id="hit-button">hit</button> 
-                    <button id="stand-button">stand</button>
-                    <button id="new-game">next round</button>
-                </div>
-            
-                        <div id="chips">
-                            <button class ="chips"id="green">5</button>
-                            <p id="g-qty"></p>
-                            <button class ="chips"id="blue">10</button>
-                            <p id="b-qty"></p>
-                            <button class ="chips"id="red">20</button>
-                            <p id="r-qty"></p>
-                        </div>
-                        <div id="bet">
-                            <h5>bet amount:</h5>
-                            <p id="bet-amount">0</p>
-                            <button id="place-bet">BET!</button>
-                        </div>
-                        <div>
-                        
-                        
-                        <table id="score">
-                            <tr>
-                                <td>Round:</td>
-                                <td id="round#"></td>
-                            </tr>
-                            <tr>
-                                <td>Wins:</td>
-                                <td id="wins#">0</td>
-                            </tr>
-                            <tr>
-                                <td>Losses:</td>
-                                <td id="losses#">0</td>
-                            </tr>
-                            <tr>
-                                <td>BlackJacks:</td>
-                                <td id="21#">0</td>
-                            </tr>
-                            
-                    </table>
-                </div>
-                    </div>   
-                </div>
-            <div id="dealer">
-                <h5>dealer</h5>
-                <h3 id="dealer-count"></h3>
-                <p id="dealer-imgs"></p>
-                </div>
-        
-    </main>
-    
-</body>
-<script src="/js/app.js"></script>
-</html>
+  </head>
+  <!-- MODAL WINDOWS -->
+  <body>
+    <main>
+      <dialog id="modal">
+        <h2>Welcome to BlackJack!</h2>
 
+        <h5>
+          Your goal is to get your hand to 21, without going over! Once you
+          click the deal the button, you'll have the options to 'hit'(draw
+          another card) or 'stand' (compare your hand agains the dealers) You'll
+          win if you score higher!
+        </h5>
+        <p class="blink">press esc to continue</p>
+      </dialog>
+
+      <div id="win-msg">
+        <h1 id="msg"></h1>
+      </div>
+
+      <div id="player">
+        <h5>player</h5>
+        <h3 id="player-count"></h3>
+        <p id="player-imgs"></p>
+        <div>
+          <button id="player-button">deal</button>
+          <button id="hit-button">hit</button>
+          <button id="stand-button">stand</button>
+          <button id="new-game">next round</button>
+          <button id="reset">reset</button>
+        </div>
+
+        <div id="bet">
+          <button id="place-bet">start</button>
+
+          <div>
+            <div id="scores">
+              <span>
+                <p>Rounds:</p>
+                <p id="round#"></p>
+              </span>
+              <span>
+                <p>Wins:</p>
+                <p id="wins#"></p>
+              </span>
+              <span>
+                <p>Losses:</p>
+                <p id="losses#"></p>
+              </span>
+              <span>
+                <p>BlackJacks:</p>
+                <p id="21#"></p>
+              </span>
+            </div>
+      
+      <div id="dealer">
+        <h5>dealer</h5>
+        <h3 id="dealer-count"></h3>
+        <p id="dealer-imgs"></p>
+      </div>
+    </main>
+  </body>
+  <script src="/js/app.js"></script>
+  <!-- JavaScript Bundle with Popper -->
+
+</html>

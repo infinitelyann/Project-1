@@ -6,7 +6,23 @@ h1 {
 body{
     text-align: center;
 }
-
+#welcome-modal{
+    height: fit-content;
+    width: fit-content;
+    display: block;
+}
+#win-msg{
+    position: absolute;
+}
+.blink {
+    animation: blinker 1s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
 #player, 
 #dealer {
      width: 100%;
@@ -16,29 +32,15 @@ body{
     background-color: steelblue;
     
 }
-#red{
-    background-color: red;
-}
-#blue{
-    background-color: blue;
-}
-#green{
-    background-color: green;
-}
-#chips{
-    display: block;
-    float: left;
-    margin-top: 40px;
-}
-#score{
-    float:right;
-    padding-right: 150px;
+
+#scores{
+    float:left;
+    padding-left: 150px;
     font-size: larger;
 }
-/* .chips{
-   
-   
-} */
+#bet{
+    margin-top: 20px;
+}
 img{
     width: 5%
 }
