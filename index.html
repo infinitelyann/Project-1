@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,400;1,100;1,200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,12 +22,12 @@
           another card) or 'stand' (compare your hand agains the dealers) You'll
           win if you score higher!
         </h5>
-        <p class="blink">press esc to continue</p>
+        <button id="continue" class="blink">click to continue</button>
       </dialog>
 
-      <div id="win-msg">
+     
         <h1 id="msg"></h1>
-      </div>
+      
 
       <div id="player">
         <h5>player</h5>
@@ -38,26 +40,26 @@
           <button id="new-game">next round</button>
           <button id="reset">reset</button>
         </div>
-
+      
         <div id="bet">
           <button id="place-bet">start</button>
 
           <div>
             <div id="scores">
               <span>
-                <p>Rounds:</p>
                 <p id="round#"></p>
+                
               </span>
               <span>
-                <p>Wins:</p>
+                
                 <p id="wins#"></p>
               </span>
               <span>
-                <p>Losses:</p>
+                
                 <p id="losses#"></p>
               </span>
               <span>
-                <p>BlackJacks:</p>
+                
                 <p id="21#"></p>
               </span>
             </div>

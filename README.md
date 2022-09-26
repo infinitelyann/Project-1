@@ -52,11 +52,13 @@ Basic Game of 21
 
 # WireFrames
 
-Welcome WireFrame
-<img >
+<img src='imgs/welcome.wireframe.png'>
 
 <img width="1015" alt="Screen Shot 2022-09-17 at 12 56 26 PM" src="https://user-images.githubusercontent.com/68655342/190944630-37c4b3a2-9681-4c1b-9bd9-5bdef16a5de3.png">
 
+<img src='imgs/winnerwireframe.png'>
+<img src='imgs/bust.wireframe.png'>
+<img src='imgs/gameover.wireframe.png'>
 # E-R-D
 
   <img width="1046" alt="Screen Shot 2022-09-18 at 11 50 48 PM" src="https://user-images.githubusercontent.com/68655342/190947135-6ad810ec-66a8-497d-95d2-e50ee5d23a6a.png">
