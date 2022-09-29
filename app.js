@@ -1,4 +1,7 @@
 
+// there are a lot of global variables and not a lot of comments !
+// well done, blackjack is a pretty complicated game and you handled it very well here 
+// definitely add more comments, and watch your indentation! 
 const deckUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
 let startButton = document.getElementById('fetch-click')
 let playerBet = document.getElementById('player-button')
@@ -30,7 +33,7 @@ playerImgs = document.getElementById('player-imgs')
 dealerImgs = document.getElementById('dealer-imgs')
 let betButton = document.getElementById('place-bet')
 
-
+// nice use of async and await ! 
 async function getJson(url) {
     let response = await fetch(url);
     let data = await response.json()
@@ -40,7 +43,7 @@ async function getJson(url) {
 
 
 
-
+// lots of white space and no comments
 async function main(){
     data = await getJson(deckUrl) 
      deck = data.cards  
