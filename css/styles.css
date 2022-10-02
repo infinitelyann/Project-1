@@ -1,7 +1,9 @@
 
 body{
+  
     text-align: center;
     font-family: 'Raleway', sans-serif;
+    background-color: steelblue;
 }
 
 h1 {
@@ -9,16 +11,30 @@ h1 {
   margin-bottom: 40px;
   font-size: 2rem;
   position: absolute;  
-
+}
+main{
+   
+ 
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+    /* Flex rules */
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
   
 }
-#welcome-modal{
+
+.modal{
+    position: fixed;
     height: fit-content;
     width: fit-content;
     display: block;
 }
-#win-msg{
-    position: absolute;
+
+.container {
+position: absolute;
 }
 .blink {
     animation: blinker 1s linear infinite;
@@ -29,13 +45,14 @@ h1 {
       opacity: 0;
     }
   }
+  
 #player, 
 #dealer {
-     width: 100%;
-    height: 100%; 
+    /* width: 50%;
+    height: 50%;  */
     padding-top: 50px;
     padding-bottom: 50px; 
-    background-color: steelblue;
+    background-color: green;
     
 }
 

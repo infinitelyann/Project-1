@@ -1,5 +1,7 @@
 # <a href='https://infinitelyann.github.io/Project-1/'>Check Out My game!</a>
 
+# !!!!!DISCLAIMER - <a href="https://www.deckofcardsapi.com/">Deck of Cards API</a> sometimes crashes- resulting in my game not running. If you try it and it's not working, try again in a few hours!
+
 # BlackJack Overview
 
 Basic Game of 21

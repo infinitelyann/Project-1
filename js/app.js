@@ -29,8 +29,13 @@ let dealer = []
 playerImgs = document.getElementById('player-imgs')
 dealerImgs = document.getElementById('dealer-imgs')
 let betButton = document.getElementById('place-bet')
-
-
+let table = document.getElementById('player-and-dealer')
+let winWindow = document.getElementById('win-or-lose')
+let buttonsWindow = document.getElementById('buttons')
+betButton.style.visibility = 'hidden'
+table.style.visibility = 'hidden'
+winWindow.style.visibility = 'hidden'
+buttonsWindow.style.visibility ='hidden'
 async function getJson(url) {
     let response = await fetch(url);
     let data = await response.json()
@@ -53,6 +58,7 @@ document.getElementById('modal').showModal()
 
 document.getElementById('continue').addEventListener('click', ()=>{
     document.getElementById('modal').remove() 
+    betButton.style.visibility = 'visible'
 })
 
 
@@ -73,11 +79,14 @@ function blink(element, button){
 
 
 betButton.addEventListener('click', ()=>{
+    
+    betButton.style.visibility = 'hidden'
     betButton.disabled = true
     main()
     playerBet.disabled = false
     blink('player-button', playerBet)
     document.getElementById('place-bet').classList.remove('blink')
+    buttonsWindow.style.visibility ='visible'
 })
 
 
@@ -115,8 +124,10 @@ function dealerDraws(){
    }
 
 playerBet.addEventListener('click',() =>{
+   
+    table.style.visibility = 'visible'
     document.getElementById('player-button').classList.remove('blink')
-            firstDeal()
+    firstDeal()
             playerBet.disabled = true
             hitButton.disabled = false
             standButton.disabled = false
@@ -176,11 +187,11 @@ function playingConditions(){
         message.innerText= "Dealer Bust! Player win!"
         uponWinOrLoss()
   }else if(playerSum > 21 && dealerSum > 21){
-        message.innerText ="tie!"
+        message.innerText ="Draw!"
         uponWinOrLoss()
   }
   else if(playerSum < 21){
-                message.innerText = "Hit Or Stand?"
+                
                
             }else if(playerSum === 21){
                blackJacks.push(1)
@@ -204,7 +215,10 @@ function playingConditions(){
         
 
 function uponWinOrLoss(){
-    
+    betButton.style.visibility = 'hidden'
+table.style.visibility = 'hidden'
+winWindow.style.visibility = 'visible'
+buttonsWindow.style.visibility ='hidden'
     betButton.disabled = true
     playerBet.disabled = true
     standButton.disabled = true
@@ -235,6 +249,8 @@ standButton.addEventListener('click', ()=>{
        
             
 newGame.addEventListener('click', ()=>{
+    betButton.style.visibility = 'visible'
+    newGame.style.visibility ='hidden'
     playerImgs.innerHTML = ''
     dealerImgs.innerHTML =''
     player = []
@@ -244,7 +260,7 @@ newGame.addEventListener('click', ()=>{
     dealerSumMsg.innerText= 0
     rounds.push(1)
 
-    message.innerText = "Place Bet!"
+ 
     document.getElementById('new-game').classList.remove('blink')
     document.getElementById('round#').innerText = `Rounds: ${rounds.length}`
     document.getElementById('wins#').innerText = `Wins: ${wins.length}`
