@@ -27,47 +27,50 @@
 
      
         <h1 id="msg"></h1>
-      
-
-      <div id="player">
-        <h5>player</h5>
-        <h3 id="player-count"></h3>
-        <p id="player-imgs"></p>
-        <div>
-          <button id="player-button">deal</button>
-          <button id="hit-button">hit</button>
-          <button id="stand-button">stand</button>
-          <button id="new-game">next round</button>
-          <button id="reset">reset</button>
+        <button id="next-round">next round</button>
+      </div>
+      <!-- player and dealer div  -->
+      <div class="container" id="player-and-dealer">
+        <div id="player">
+          <h5>player</h5>
+          <h3 id="player-count"></h3>
+          <p id="player-imgs"></p>
         </div>
-      
-        <div id="bet">
-          <button id="place-bet">start</button>
+        <div id="dealer">
+          <h5>dealer</h5>
+          <h3 id="dealer-count"></h3>
+          <p id="dealer-imgs"></p>
+        </div>
+      </div>
 
-          <div>
-            <div id="scores">
-              <span>
-                <p id="round#"></p>
-                
-              </span>
-              <span>
-                
-                <p id="wins#"></p>
-              </span>
-              <span>
-                
-                <p id="losses#"></p>
-              </span>
-              <span>
-                
-                <p id="21#"></p>
-              </span>
-            </div>
-      
-      <div id="dealer">
-        <h5>dealer</h5>
-        <h3 id="dealer-count"></h3>
-        <p id="dealer-imgs"></p>
+      <!-- button div -->
+
+      <div class="container" id="buttons">
+        <button id="deal-button">deal</button>
+        <button id="hit-button">hit</button>
+        <button id="stand-button">stand</button>
+        <button id="clear">clear</button>
+      </div>
+
+      <div id="bet">
+        <button id="start">start</button>
+
+        <div>
+          <div id="scores">
+            <span>
+              <p id="round#"></p>
+            </span>
+            <span>
+              <p id="wins#"></p>
+            </span>
+            <span>
+              <p id="losses#"></p>
+            </span>
+            <span>
+              <p id="21#"></p>
+            </span>
+          </div>
+        </div>
       </div>
     </main>
   </body>
