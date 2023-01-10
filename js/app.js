@@ -93,10 +93,12 @@ startButton.addEventListener('click', ()=>{
     startButton.style.visibility = 'hidden'
     startButton.disabled = true
     main()
-    deal.disabled = false
-    blink('deal-button', deal)
-    document.getElementById('start').classList.remove('blink')
-    buttonsWindow.style.visibility ='visible'
+    playerBet.disabled = false
+    blink('player-button', playerBet)
+    document.getElementById('place-bet').classList.remove('blink')
+
+  
+ 
 })
 
 
@@ -274,15 +276,14 @@ nextRound.addEventListener('click', ()=>{
     dealerSumMsg.innerText= 0
     rounds.push(1)
 
- 
-    document.getElementById('next-round').classList.remove('blink')
-    document.getElementById('round#').innerText = `Rounds: ${rounds.length}`
-    document.getElementById('wins#').innerText = `Wins: ${wins.length}`
-    document.getElementById('losses#').innerText = `Losses: ${losses.length}`
-    document.getElementById('21#').innerText = `BlackJacks: ${blackJacks.length}`
-    document.getElementById('next-round').disabled = true
-    deal.disabled = false 
-    blink('deal-button', deal)
+    message.innerText = "Place Bet!"
+    document.getElementById('new-game').classList.remove('blink')
+    document.getElementById('round#').innerText = rounds.length
+    document.getElementById('wins#').innerText = wins.length
+    document.getElementById('losses#').innerText = losses.length
+    document.getElementById('21#').innerText = blackJacks.length
+    document.getElementById('new-game').disabled = true
+    betButton.disabled = false 
     console.log(deck.length)
     
     if(deck.length > 6){
@@ -297,10 +298,10 @@ nextRound.addEventListener('click', ()=>{
 
 
 
-function clear(){
-clearBoard.disabled = true
-nextRound.disabled = true
-deal.disabled = true
+function clearBoard(){
+resetGame.disabled = true
+newGame.disabled = true
+playerBet.disabled = true
 standButton.disabled = true
 hitButton.disabled = true
 playerValues = []
@@ -317,5 +318,5 @@ dealer = []
 
  }
  clear()
- blink('start', startButton)
+ blink('place-bet', betButton)
  
