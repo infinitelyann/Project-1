@@ -42,6 +42,8 @@ winWindow.style.visibility = 'hidden'
 buttonsWindow.style.visibility ='hidden'
 
 
+
+
 async function getJson(url) {
     let response = await fetch(url);
     let data = await response.json()
@@ -66,7 +68,6 @@ document.getElementById('continue').addEventListener('click', ()=>{
     console.log(deck)
     
     document.getElementById('modal').remove() 
-    betButton.style.visibility = 'visible'
 })
 
 
@@ -88,15 +89,11 @@ function blink(element, button){
 
 
 betButton.addEventListener('click', ()=>{
-    console.log(betButton, deck)
-    
-    betButton.style.visibility = 'hidden'
     betButton.disabled = true
     main()
     deal.disabled = false
     blink('deal-button', deal)
     document.getElementById('place-bet').classList.remove('blink')
-    buttonsWindow.style.visibility ='visible'
 })
 
 
@@ -133,13 +130,10 @@ function dealerDraws(){
     hit(dealer, dealerImgs)
    }
 
-deal.addEventListener('click',() =>{
-    console.log(deal, deck)
-   
-    table.style.visibility = 'visible'
-    document.getElementById('deal-button').classList.remove('blink')
-    firstDeal()
-            deal.disabled = true
+playerBet.addEventListener('click',() =>{
+    document.getElementById('player-button').classList.remove('blink')
+            firstDeal()
+            playerBet.disabled = true
             hitButton.disabled = false
             standButton.disabled = false
            
@@ -199,11 +193,11 @@ function playingConditions(){
         message.innerText= "Dealer Bust! Player win!"
         uponWinOrLoss()
   }else if(playerSum > 21 && dealerSum > 21){
-        message.innerText ="Draw!"
+        message.innerText ="tie!"
         uponWinOrLoss()
   }
   else if(playerSum < 21){
-                
+                message.innerText = "Hit Or Stand?"
                
             }else if(playerSum === 21){
                blackJacks.push(1)
@@ -227,10 +221,7 @@ function playingConditions(){
         
 
 function uponWinOrLoss(){
-    betButton.style.visibility = 'hidden'
-table.style.visibility = 'hidden'
-winWindow.style.visibility = 'visible'
-buttonsWindow.style.visibility ='hidden'
+    
     betButton.disabled = true
     deal.disabled = true
     standButton.disabled = true
@@ -261,10 +252,7 @@ standButton.addEventListener('click', ()=>{
 })
        
             
-nextRound.addEventListener('click', ()=>{
-    console.log(e.target)
-    betButton.style.visibility = 'visible'
-    nextRound.style.visibility ='hidden'
+newGame.addEventListener('click', ()=>{
     playerImgs.innerHTML = ''
     dealerImgs.innerHTML =''
     player = []
@@ -274,8 +262,8 @@ nextRound.addEventListener('click', ()=>{
     dealerSumMsg.innerText= 0
     rounds.push(1)
 
- 
-    document.getElementById('next-round').classList.remove('blink')
+    message.innerText = "Place Bet!"
+    document.getElementById('new-game').classList.remove('blink')
     document.getElementById('round#').innerText = `Rounds: ${rounds.length}`
     document.getElementById('wins#').innerText = `Wins: ${wins.length}`
     document.getElementById('losses#').innerText = `Losses: ${losses.length}`
