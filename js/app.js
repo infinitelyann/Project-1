@@ -74,6 +74,7 @@ function blink(element, button){
 betButton.addEventListener('click', ()=>{
     main()
     playerBet.disabled = false
+    betButton.disabled = true
     blink('player-button', playerBet)
     document.getElementById('place-bet').classList.remove('blink')
 
@@ -255,7 +256,7 @@ newGame.addEventListener('click', ()=>{
     document.getElementById('losses#').innerText = losses.length
     document.getElementById('21#').innerText = blackJacks.length
     document.getElementById('new-game').disabled = true
-    betButton.disabled = false 
+    playerBet.disabled = false 
     console.log(deck.length)
     
     if(deck.length > 6){
@@ -273,7 +274,7 @@ newGame.addEventListener('click', ()=>{
 function clearBoard(){
 resetGame.disabled = true
 newGame.disabled = true
-playerBet.disabled = true
+playerBet.disabled = false
 standButton.disabled = true
 hitButton.disabled = true
 playerValues = []
@@ -291,5 +292,5 @@ dealer = []
 
  }
  clear()
- blink('place-bet', betButton)
+ blink('player-button', playerBet)
  
