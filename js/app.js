@@ -1,7 +1,7 @@
 
 const deckUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
 //api url
-// let startButton = document.getElementById('fetch-click')
+let startButton = document.getElementById('fetch-click')
 //button click that makes api call
 let deal = document.getElementById('deal-button')
 //button that makes deal
@@ -32,11 +32,11 @@ let player = []
 let dealer = []
 playerImgs = document.getElementById('player-imgs')
 dealerImgs = document.getElementById('dealer-imgs')
-let startButton = document.getElementById('start')
+let betButton = document.getElementById('place-bet')
 let table = document.getElementById('player-and-dealer')
 let winWindow = document.getElementById('win-or-lose')
 let buttonsWindow = document.getElementById('buttons')
-startButton.style.visibility = 'hidden'
+betButton.style.visibility = 'hidden'
 table.style.visibility = 'hidden'
 winWindow.style.visibility = 'hidden'
 buttonsWindow.style.visibility ='hidden'
@@ -66,7 +66,7 @@ document.getElementById('continue').addEventListener('click', ()=>{
     console.log(deck)
     
     document.getElementById('modal').remove() 
-    startButton.style.visibility = 'visible'
+    betButton.style.visibility = 'visible'
 })
 
 
@@ -87,15 +87,15 @@ function blink(element, button){
 
 
 
-startButton.addEventListener('click', ()=>{
-    console.log(startButton, deck)
+betButton.addEventListener('click', ()=>{
+    console.log(betButton, deck)
     
-    startButton.style.visibility = 'hidden'
-    startButton.disabled = true
+    betButton.style.visibility = 'hidden'
+    betButton.disabled = true
     main()
     deal.disabled = false
     blink('deal-button', deal)
-    document.getElementById('start').classList.remove('blink')
+    document.getElementById('place-bet').classList.remove('blink')
     buttonsWindow.style.visibility ='visible'
 })
 
@@ -134,7 +134,7 @@ function dealerDraws(){
    }
 
 deal.addEventListener('click',() =>{
-    console.log("deal", deck)
+    console.log(deal, deck)
    
     table.style.visibility = 'visible'
     document.getElementById('deal-button').classList.remove('blink')
@@ -227,11 +227,11 @@ function playingConditions(){
         
 
 function uponWinOrLoss(){
-    startButton.style.visibility = 'hidden'
+    betButton.style.visibility = 'hidden'
 table.style.visibility = 'hidden'
 winWindow.style.visibility = 'visible'
 buttonsWindow.style.visibility ='hidden'
-    startButton.disabled = true
+    betButton.disabled = true
     deal.disabled = true
     standButton.disabled = true
     hitButton.disabled = true
@@ -263,7 +263,7 @@ standButton.addEventListener('click', ()=>{
             
 nextRound.addEventListener('click', ()=>{
     console.log(e.target)
-    startButton.style.visibility = 'visible'
+    betButton.style.visibility = 'visible'
     nextRound.style.visibility ='hidden'
     playerImgs.innerHTML = ''
     dealerImgs.innerHTML =''
@@ -286,7 +286,7 @@ nextRound.addEventListener('click', ()=>{
     console.log(deck.length)
     
     if(deck.length > 6){
-        blink('start', startButton)
+        blink('place-bet', betButton)
     }else if(deck.length < 5){
         clearBoard.disabled = false
         message.innerText = "No More Cards!"
@@ -317,5 +317,5 @@ dealer = []
 
  }
  clear()
- blink('start', startButton)
+ blink('place-bet', betButton)
  
