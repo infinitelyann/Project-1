@@ -42,6 +42,8 @@ winWindow.style.visibility = 'hidden'
 buttonsWindow.style.visibility ='hidden'
 
 
+
+
 async function getJson(url) {
     let response = await fetch(url);
     let data = await response.json()
@@ -199,11 +201,11 @@ function playingConditions(){
         message.innerText= "Dealer Bust! Player win!"
         uponWinOrLoss()
   }else if(playerSum > 21 && dealerSum > 21){
-        message.innerText ="Draw!"
+        message.innerText ="tie!"
         uponWinOrLoss()
   }
   else if(playerSum < 21){
-                
+                message.innerText = "Hit Or Stand?"
                
             }else if(playerSum === 21){
                blackJacks.push(1)
@@ -274,15 +276,14 @@ nextRound.addEventListener('click', ()=>{
     dealerSumMsg.innerText= 0
     rounds.push(1)
 
- 
-    document.getElementById('next-round').classList.remove('blink')
-    document.getElementById('round#').innerText = `Rounds: ${rounds.length}`
-    document.getElementById('wins#').innerText = `Wins: ${wins.length}`
-    document.getElementById('losses#').innerText = `Losses: ${losses.length}`
-    document.getElementById('21#').innerText = `BlackJacks: ${blackJacks.length}`
-    document.getElementById('next-round').disabled = true
-    deal.disabled = false 
-    blink('deal-button', deal)
+    message.innerText = "Place Bet!"
+    document.getElementById('new-game').classList.remove('blink')
+    document.getElementById('round#').innerText = rounds.length
+    document.getElementById('wins#').innerText = wins.length
+    document.getElementById('losses#').innerText = losses.length
+    document.getElementById('21#').innerText = blackJacks.length
+    document.getElementById('new-game').disabled = true
+    betButton.disabled = false 
     console.log(deck.length)
     
     if(deck.length > 6){
@@ -297,10 +298,10 @@ nextRound.addEventListener('click', ()=>{
 
 
 
-function clear(){
-clearBoard.disabled = true
-nextRound.disabled = true
-deal.disabled = true
+function clearBoard(){
+resetGame.disabled = true
+newGame.disabled = true
+playerBet.disabled = true
 standButton.disabled = true
 hitButton.disabled = true
 playerValues = []
