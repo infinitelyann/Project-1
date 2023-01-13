@@ -7,26 +7,25 @@ let deal = document.getElementById('deal-button')
 //button that makes deal
 let hitButton = document.getElementById('hit-button')
 let standButton = document.getElementById('stand-button')
-let nextRound = document.getElementById('next-round')
-let clearBoard = document.getElementById('clear')
-//player game
-
-clearBoard.disabled = true
-nextRound.disabled = true
-deal.disabled = true
+let newGame = document.getElementById('new-game')
+let resetGame = document.getElementById('reset')
+resetGame.disabled = true
+newGame.disabled = true
+playerBet.disabled = true
 standButton.disabled = true
 hitButton.disabled = true
 let playerValues = []
 let dealerValues = []
 let playerSum = 0
 let dealerSum = 0
+let gameRound = []
 let message = document.getElementById('msg') 
 let playerSumMsg = document.getElementById('player-count')
 let dealerSumMsg = document.getElementById('dealer-count')
 let wins = []
 let losses  = []
 let blackJacks = []
-let rounds = []
+rounds = []
 let deck = []
 let player = []
 let dealer = []
@@ -64,14 +63,6 @@ async function main(){
 document.getElementById('modal').showModal() 
 
 
-document.getElementById('continue').addEventListener('click', ()=>{
-    console.log(deck)
-    
-    document.getElementById('modal').remove() 
-    betButton.style.visibility = 'visible'
-})
-
-
 clearBoard.addEventListener('click', 
 ()=> {
     console.log(clearBoard, deck)
@@ -89,16 +80,19 @@ function blink(element, button){
 
 
 
+
+
+
+
+
 betButton.addEventListener('click', ()=>{
-    console.log(betButton, deck)
-    
-    betButton.style.visibility = 'hidden'
-    betButton.disabled = true
     main()
     deal.disabled = false
     blink('deal-button', deal)
     document.getElementById('place-bet').classList.remove('blink')
-    buttonsWindow.style.visibility ='visible'
+
+  
+ 
 })
 
 
@@ -185,9 +179,12 @@ hitButton.addEventListener('click', () =>{
                 dealerValues.push(10)   
             }else{
                 dealerValues.push(Number(user[i].value))
+                
             }
-            }for(let i = 0; i < dealerValues.length; i++){
-               dealerSum +=dealerValues[i]
+            }
+            for(let i = 0; i < dealerValues.length; i++){
+                    
+                dealerSum +=dealerValues[i]
             } 
         
             console.log(dealerSum)
@@ -308,6 +305,7 @@ playerValues = []
 dealerValues = []
 playerSum = 0
 dealerSum = 0
+gameRound = []
 wins = []
 losses  = []
 blackJacks = []
