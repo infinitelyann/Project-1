@@ -1,14 +1,12 @@
 
 const deckUrl = "https://deckofcardsapi.com/api/deck/new/draw/?count=52"
-//api url
 let startButton = document.getElementById('fetch-click')
-//button click that makes api call
-let deal = document.getElementById('deal-button')
-//button that makes deal
+let playerBet = document.getElementById('player-button')
 let hitButton = document.getElementById('hit-button')
 let standButton = document.getElementById('stand-button')
 let newGame = document.getElementById('new-game')
 let resetGame = document.getElementById('reset')
+// betButton.disabled = true
 resetGame.disabled = true
 newGame.disabled = true
 playerBet.disabled = true
@@ -18,29 +16,19 @@ let playerValues = []
 let dealerValues = []
 let playerSum = 0
 let dealerSum = 0
-let gameRound = []
 let message = document.getElementById('msg') 
 let playerSumMsg = document.getElementById('player-count')
 let dealerSumMsg = document.getElementById('dealer-count')
 let wins = []
 let losses  = []
 let blackJacks = []
-rounds = []
+let rounds = []
 let deck = []
 let player = []
 let dealer = []
 playerImgs = document.getElementById('player-imgs')
 dealerImgs = document.getElementById('dealer-imgs')
 let betButton = document.getElementById('place-bet')
-let table = document.getElementById('player-and-dealer')
-let winWindow = document.getElementById('win-or-lose')
-let buttonsWindow = document.getElementById('buttons')
-betButton.style.visibility = 'hidden'
-table.style.visibility = 'hidden'
-winWindow.style.visibility = 'hidden'
-buttonsWindow.style.visibility ='hidden'
-
-
 
 
 async function getJson(url) {
@@ -63,36 +51,34 @@ async function main(){
 document.getElementById('modal').showModal() 
 
 
-clearBoard.addEventListener('click', 
+document.getElementById('continue').addEventListener('click', ()=>{
+    document.getElementById('modal').remove() 
+})
+
+
+resetGame.addEventListener('click', 
 ()=> {
-    console.log(clearBoard, deck)
     clearBoard()
     main()
     console.log(deck)
 })
 
+
 function blink(element, button){
-    if(button.disabled == false){         
+        if(button.disabled == false){
         document.getElementById(element).setAttribute('class', 'blink')
-        
     }
 }
 
 
 
 
-
-
-
-
 betButton.addEventListener('click', ()=>{
+    betButton.disabled = true
     main()
-    deal.disabled = false
-    blink('deal-button', deal)
+    playerBet.disabled = false
+    blink('player-button', playerBet)
     document.getElementById('place-bet').classList.remove('blink')
-
-  
- 
 })
 
 
@@ -129,13 +115,10 @@ function dealerDraws(){
     hit(dealer, dealerImgs)
    }
 
-deal.addEventListener('click',() =>{
-    console.log(deal, deck)
-   
-    table.style.visibility = 'visible'
-    document.getElementById('deal-button').classList.remove('blink')
-    firstDeal()
-            deal.disabled = true
+playerBet.addEventListener('click',() =>{
+    document.getElementById('player-button').classList.remove('blink')
+            firstDeal()
+            playerBet.disabled = true
             hitButton.disabled = false
             standButton.disabled = false
            
@@ -146,7 +129,6 @@ deal.addEventListener('click',() =>{
            })
 
 hitButton.addEventListener('click', () =>{
-    console.log(hitButton, deck)
     document.getElementById('hit-button').classList.remove('blink')
     dealerDraws()
             hit(player, playerImgs)
@@ -179,12 +161,9 @@ hitButton.addEventListener('click', () =>{
                 dealerValues.push(10)   
             }else{
                 dealerValues.push(Number(user[i].value))
-                
             }
-            }
-            for(let i = 0; i < dealerValues.length; i++){
-                    
-                dealerSum +=dealerValues[i]
+            }for(let i = 0; i < dealerValues.length; i++){
+               dealerSum +=dealerValues[i]
             } 
         
             console.log(dealerSum)
@@ -226,17 +205,14 @@ function playingConditions(){
         
 
 function uponWinOrLoss(){
-    betButton.style.visibility = 'hidden'
-table.style.visibility = 'hidden'
-winWindow.style.visibility = 'visible'
-buttonsWindow.style.visibility ='hidden'
+    
     betButton.disabled = true
-    deal.disabled = true
+    playerBet.disabled = true
     standButton.disabled = true
     hitButton.disabled = true
-    document.getElementById('next-round').disabled = false
+    document.getElementById('new-game').disabled = false
     document.getElementById('stand-button').classList.remove('blink')
-    blink('next-round', nextRound)
+    blink('new-game', newGame)
     setTimeout(() =>{
         message.innerText = "Wanna go again? Click Next Round!"}, 1500)
         
@@ -244,7 +220,6 @@ buttonsWindow.style.visibility ='hidden'
 }
  
 standButton.addEventListener('click', ()=>{
-    console.log(e.target)
     document.getElementById('stand-button').classList.remove('blink')
     document.getElementById('hit-button').classList.remove('blink')
     hitButton.disabled = true 
@@ -260,10 +235,7 @@ standButton.addEventListener('click', ()=>{
 })
        
             
-nextRound.addEventListener('click', ()=>{
-    console.log(e.target)
-    betButton.style.visibility = 'visible'
-    nextRound.style.visibility ='hidden'
+newGame.addEventListener('click', ()=>{
     playerImgs.innerHTML = ''
     dealerImgs.innerHTML =''
     player = []
@@ -275,10 +247,10 @@ nextRound.addEventListener('click', ()=>{
 
     message.innerText = "Place Bet!"
     document.getElementById('new-game').classList.remove('blink')
-    document.getElementById('round#').innerText = rounds.length
-    document.getElementById('wins#').innerText = wins.length
-    document.getElementById('losses#').innerText = losses.length
-    document.getElementById('21#').innerText = blackJacks.length
+    document.getElementById('round#').innerText = `Rounds: ${rounds.length}`
+    document.getElementById('wins#').innerText = `Wins: ${wins.length}`
+    document.getElementById('losses#').innerText = `Losses: ${losses.length}`
+    document.getElementById('21#').innerText = `BlackJacks: ${blackJacks.length}`
     document.getElementById('new-game').disabled = true
     betButton.disabled = false 
     console.log(deck.length)
@@ -286,7 +258,7 @@ nextRound.addEventListener('click', ()=>{
     if(deck.length > 6){
         blink('place-bet', betButton)
     }else if(deck.length < 5){
-        clearBoard.disabled = false
+        resetGame.disabled = false
         message.innerText = "No More Cards!"
     }
     
@@ -305,7 +277,6 @@ playerValues = []
 dealerValues = []
 playerSum = 0
 dealerSum = 0
-gameRound = []
 wins = []
 losses  = []
 blackJacks = []
