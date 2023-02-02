@@ -53,6 +53,7 @@ document.getElementById('modal').showModal()
 
 document.getElementById('continue').addEventListener('click', ()=>{
     document.getElementById('modal').remove() 
+    document.getElementById('board').style.visibility = "visible"
 })
 
 
