@@ -73,7 +73,7 @@ height:fit-content ;
 display: block;
   float:left;
   padding-left: 50px;
-  font-size: .75rem;
+  
   color: white;
 }
 #bet{
@@ -85,5 +85,11 @@ img{
 @media only screen and (max-width: 480px) {
   img {
     width: 20%;
+  }
+  #msg{
+    font-size: .75rem;
+  }
+  #scores{
+    font-size: .75rem;
   }
 }
