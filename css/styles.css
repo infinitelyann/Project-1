@@ -86,10 +86,7 @@ img{
   img {
     width: 20%;
   }
-  #msg{
-    font-size: .75rem;
-  }
-  #scores{
-    font-size: .75rem;
-  }
+ body{
+  font-size: .75rem;
+ }
 }
