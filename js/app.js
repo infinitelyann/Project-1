@@ -42,7 +42,7 @@ async function main() {
   data = await getJson(deckUrl);
   deck = data.cards;
 }
-
+//welcome modal
 document.getElementById("modal").showModal();
 
 document.getElementById("continue").addEventListener("click", () => {
